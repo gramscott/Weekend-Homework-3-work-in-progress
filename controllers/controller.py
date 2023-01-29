@@ -1,35 +1,52 @@
 from flask import render_template, request
-from app import app
-from models.book import Book
+from app import app 
 from models.library import *
+from models.book import Book
 
 
-@app.route('/books')
+
+
+
+
+
+@app.route("/books")
 def index():
-    return render_template("index.html", title="Good Books", books=books)
+    return render_template("index.html", title="BOOKS ARE CLASS!", books=books)
 
 
-@app.route('/books/<int:id>')
-def get_a_book(id):
-    return render_template("book.html", title="Good Books", book=books[id])
 
 
-@app.route('/library', methods=['POST'])
-def new_book():
-    book_title = request.form['title']
-    book_author = request.form['author']
-    book_genre = request.form['genre']
-    new_book = Book(book_title, book_author, book_genre)
-    add_new_book(new_book) 
-    return render_template("index.html", title="Good Book", books=books)
 
 
-@app.route('/remove', methods=['POST'])
+
+
+
+
+
+
+
+
+
+@app.route("/books<int:id>")
+def the_chosen_one(id):
+    return render_template("book.html", title="Your Book", book=books[id])
+
+
+
+
+
+
+@app.route("/add_book", methods=["POST"])
+def add_book():
+    add_new_book(book3)
+    return render_template("index.html", title="BOOKS ARE CLASS!", books=books(book3))
+
+
+@app.route("/remove_book", methods=["POST"])
 def remove_book():
-    book_title = request.form['title']
-    book_author = request.form['author']
-    book_genre = request.form['genre']
-    book_to_remove = Book(book_title, book_author, book_genre)
-    remove_book(book_to_remove) 
-    return render_template("index.html", title="Good Book", books=books)
-
+    title = request.form["title"]
+    author = request.form["author"]
+    genre = request.form["genre"]
+    remove_books = Book(title, author, genre)
+    remove_book(remove_books)
+    return render_template("index.html", title="Home", books=books[0])
