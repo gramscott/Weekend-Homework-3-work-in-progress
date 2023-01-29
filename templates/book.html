@@ -1,0 +1,30 @@
+
+<head>
+<hr>
+<h3>Here is your books:</h3>
+{%for book in books%}
+<div>
+    <p>
+        <b> <a href="/book{{ loop.index }}"></b>
+    </p>
+</div>
+{%endfor%}
+</body>
+</html>
+
+<head>
+{%for book in books%}
+<div>
+    <p>
+       <a href="books/{{loop.index[0]}}">{{book.title}}</a><br>
+       Author: {{book.author}} <br>
+       Genre: {{book.genre}} <br>
+    <form action="/books" method="post"></form>
+    <label for="delete">Delete Book</label>
+    <input type="checkbox" id="delete" name="delete">
+    <input type="submit" value="confirm">
+    </form>
+    </p>
+</div>
+{%endfor%}
+</head>
